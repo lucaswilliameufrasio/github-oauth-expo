@@ -2,7 +2,7 @@ export default {
   github: {
     config: {
       clientId: "356660bcfa4691481031",
-      scopes: ["identity"],
+      scopes: ["user"],
       // For usage in managed apps using the proxy
       redirectUri: "",
     },
