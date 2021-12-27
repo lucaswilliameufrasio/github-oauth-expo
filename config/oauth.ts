@@ -1,7 +1,10 @@
-export default {
+import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from 'react-native-dotenv'
+
+export const oauth = {
   github: {
     config: {
-      clientId: "356660bcfa4691481031",
+      clientId: GITHUB_CLIENT_ID,
+      clientSecret: GITHUB_CLIENT_SECRET,
       scopes: ["identity"],
       // For usage in managed apps using the proxy
       redirectUri: "",
