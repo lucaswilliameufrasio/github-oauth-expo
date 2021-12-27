@@ -17,12 +17,17 @@ export default function App() {
   )
 
   async function getAccessToken(code: string) {
+    if (!githubConfig.clientSecret) return
+
     // Usa esse código na API, não aqui
     // A requisição deve ser realizada no backend
     const token = await axios.post(
       githubDiscovery.tokenEndpoint,
       {},
       {
+        headers: {
+          Accept: 'application/json'
+        },
         params: {
           code,
           client_id: githubConfig.clientId,
@@ -30,17 +35,17 @@ export default function App() {
         },
       },
     )
-    console.log(token.data)
+    console.log('user credentials', token.data)
   }
 
   async function handleGithubResponse() {
     if (githubResponse?.type === 'success') {
       const { code } = githubResponse.params
-      console.log(code)
-      console.log(githubResponse)
+      console.log('code', code)
+      console.log('githubResponse success', githubResponse)
       await getAccessToken(code)
     } else {
-      console.log(githubResponse)
+      console.log('githubResponse', githubResponse)
     }
   }
 
